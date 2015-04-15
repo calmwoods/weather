@@ -1,0 +1,43 @@
+﻿<div class="container">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{forecast[0][0]['date']}}</div>
+        <div class="col-xs-12 col-sm-6 text-right">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-5 control-label">View by:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control input-sm" ng-model="orderProperty">
+                            <option value="cityName">City</option>
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th class="text-center">City</th>
+                    <th class="text-center">Weather</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-right">High</th>
+                    <th class="text-right">Low</th>
+                </tr>
+                <tr ng-repeat="fc in forecast | orderBy:orderProperty">
+                    <td class="text-center"><a href="#/eachcity/cityname/{{fc['cityName']}}/weekweather/{{fc}}/">{{fc['cityName']}}</a></td>
+                    <td class="text-center"><img src="http://l.yimg.com/a/i/us/we/52/{{fc[0]['code']}}.gif" /></td>
+                    <td class="text-center">{{fc[0]['text']}}</td>
+                    <td class="text-right" ng-if="unit=='f'">&nbsp; {{fc[0]['high']}}</td>
+                    <td class="text-right" ng-if="unit=='c'">&nbsp; {{fc[0]['c_high']}}</td>
+                    <td class="text-right" ng-if="unit=='f'">&nbsp; {{fc[0]['low']}}</td>
+                    <td class="text-right" ng-if="unit=='c'">&nbsp; {{fc[0]['c_low']}}</td>
+                </tr>
+            </table>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+</div>
